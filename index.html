@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Arena RPG</title>
+    <link href="https://fonts.googleapis.com/css?family=Fondamento" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -13,46 +14,53 @@
 <body>
     <h1>Welcome to the Arena!</h1>
     <!-- Card starting pos / player card pos -->
-    <div id="topCardSlots">
-        <div id="black-knight" class="card">
-            <p>Black Knight</p>
-            <img id="hero1">
-            <p id="health1">YO</p>
+    <div class="cardSection">
+        <div id="hero1" class="card">
+            <p class="name"></p>
+            <img class="img">
+            <p class="health"></p>
         </div>
-        <div id="grail-knight" class="card">
-            <p>Knight of the Grail</p>
-            <img id="hero2">
-            <p id="health2"></p>
+        <div id="hero2" class="card">
+            <p class="name"></p>
+            <img class="img">
+            <p class="health"></p>
         </div>
-        <div id="big-knight" class="card">
-            <p>Big Boi</p>
-            <img id="hero3">
-            <p id="health3"></p>
+        <div id="hero3" class="card">
+            <p class="name"></p>
+            <img class="img">
+            <p class="health"></p>
         </div>
-        <div id="solaire" class="card">
-            <p>Knight Solaire</p>
-            <img id="hero4">
-            <p id="health4"></p>
+        <div id="hero4" class="card">
+            <p class="name"></p>
+            <img class="img">
+            <p class="health"></p>
         </div>
-        <div id="maximus" class="card">
-            <p>Maximus</p>
-            <img id="hero5">
-            <p id="health5"></p>
+        <div id="hero5" class="card">
+            <p class="name"></p>
+            <img class="img">
+            <p class="health"></p>
         </div>
         <h2>Your character</h2>
     </div>
-<!-- instruction text and button -->
-    <div>
 
+    <div id="enemy-div" class="cardSection">
+        <!-- combatant card pos -->
     </div>
-<!-- combatant card pos -->
-    <div>
 
-    </div>
-<!-- defending combatant pos -->
-    <div>
+    <h2>Choose a combatant to attack!</h2>
+    <button id="attack-button"><h3>Attack</h3></button>
+    <h2>Defender</h2>
 
+    <div id="defend-div" class="cardSection">
+        <!-- defending combatant pos -->
     </div>
+
+    <h2>Graveyard</h2>
+
+    <div id="dead-div" class="cardSection">
+        <!-- graveyard -->
+    </div>
+
     <script src="assets/javascript/game.js"></script>
 </body>
 

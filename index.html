@@ -14,7 +14,7 @@
 <body>
     <h1>Welcome to the Arena!</h1>
     <!-- Card starting pos / player card pos -->
-    <h2 id="choose-text">Choose your character!</h2>
+    <h2 id="choose-text">Choose your fighter!</h2>
     <div class="cardSection">
         <div id="hero1" class="card">
             <p class="name"></p>
@@ -36,37 +36,32 @@
             <img class="img">
             <p class="health"></p>
         </div>
-        <!-- <div id="hero5" class="card">
-            <p class="name"></p>
-            <img class="img">
-            <p class="health"></p>
-        </div> -->
     </div>
-    
-    <h2>Your character:</h2>
 
     <div id="hero-div" class="cardSection">
         <!-- user hero card pos -->
     </div>
 
-    <h2>Choose a combatant to attack!</h2>
-
     <div id="enemy-div" class="cardSection">
+        <h2>Choose a combatant to attack!</h2>
         <!-- combatant card pos -->
     </div>
 
-    <h2></h2>
+    <h2 id="fight-text">Fight section:</h2>
     <button id="attack-button"><h3>Attack</h3></button>
-    <h2>Defender:</h2>
 
     <div id="defend-div" class="cardSection">
+        <h2>Defender:</h2>
         <!-- defending combatant pos -->
     </div>
 
-    <h2>Graveyard:</h2>
-
     <div id="dead-div" class="cardSection">
+        <h2>Graveyard:</h2>
         <!-- graveyard -->
+    </div>
+
+    <div class="fixed">
+        <p id="status-text"></p>
     </div>
 
     <script src="assets/javascript/game.js"></script>

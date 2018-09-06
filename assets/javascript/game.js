@@ -1,10 +1,11 @@
 
 // constructs hero objects
-function heroConstructor(name, health, aPower, dPower, imgSource) {
+function heroConstructor(name, health, basePower, dPower, imgSource) {
     var thisHero = {
         name: name,
         health: health,
-        aPower: aPower,
+        basePower: basePower,
+        aPower: basePower,
         dPower: dPower,
         imgSource: imgSource
     };
@@ -13,13 +14,17 @@ function heroConstructor(name, health, aPower, dPower, imgSource) {
 };
 
 // create heros
-var kBlack   = heroConstructor("Black Knight",        80,  12, 2,  "assets/images/black-knight.jpg");
-var kGrail   = heroConstructor("Knight of the Grail", 120, 10, 10, "assets/images/grail-knight.png");
-var kBigBoy  = heroConstructor("Big Boy",             200, 8,  20, "assets/images/generic-knight.jpg");
-var kSolaire = heroConstructor("Knight Solaire",      220, 6,  25, "assets/images/solaire.jpg");
-var kMaximus = heroConstructor("Maximus",             300, 4,  27, "assets/images/gladiator.jpg");
+var kBlack   = heroConstructor("Black Knight",        100,  15, 2,  "assets/images/black-knight.jpg");
+var kGrail   = heroConstructor("Knight of the Grail", 120, 12, 10, "assets/images/grail-knight.png");
+// var kBigBoy  = heroConstructor("Big Boy",             200, 8,  20, "assets/images/generic-knight.jpg");
+var kSolaire = heroConstructor("Knight Solaire",      160, 8,  20, "assets/images/solaire.jpg");
+var kMaximus = heroConstructor("Maximus",             190, 5,  25, "assets/images/gladiator.jpg");
 
-var heros = [kBlack, kGrail, kBigBoy, kSolaire, kMaximus];
+// var num = 5;
+// num -= 1;
+// console.log(num);
+
+var heros = [kBlack, kGrail, kSolaire, kMaximus];
 
 for (i=0; i<heros.length; i++) {
     $("#hero" + (i + 1) + " > .name").text(heros[i].name);
@@ -49,7 +54,9 @@ function getCardID(aHero) {
     }
 }
 
-function moveEnemies() {
+function placeCards() {
+    $("#choose-text").hide();
+    $("#hero-div").append($("#" + getCardID(userHero)));
     for (i=0; i<heros.length; i++) {
         if (getHero("hero" + (i + 1)) !== userHero) {
             $enemyDiv.append($("#hero" + (i + 1)));
@@ -57,35 +64,38 @@ function moveEnemies() {
     }
 }
 
-function moveDefender(cardID) {
-    $defendDiv.append($("#" + cardID));
-}
-
-function moveDead(cardID) {
-    $deadDiv.append($("#" + cardID));
-}
-
 // card click code
 $(".card").on("click", function() {
     var clickedHero = getHero(this.id);
     if (userHero == null) {
         userHero = clickedHero;
-        moveEnemies();
+        placeCards();
     } else if (clickedHero !== userHero && clickedHero.health > 0 && defender == null) {
         defender = clickedHero;
-        moveDefender(this.id);
+        $defendDiv.append($("#" + this.id));
     }
 });
 
 // attack code
 $("#attack-button").on("click", function() {
-    if (defender != null) {
-        if (defender.health > 0 && userHero.health > 0) {
-            
-        } else {
-            moveDead(getCardID(defender));
-            defender = null;
-        }
+    if (userHero != null && userHero.health > 0) {
+        if (defender != null) {
+            defender.health -= userHero.aPower;
+            $("#" + getCardID(defender) + " > .health").text(defender.health);
+            if (defender.health > 0) {
+                userHero.health -= defender.dPower;
+                $("#" + getCardID(userHero) + " > .health").text(userHero.health);
+                if (userHero.health <= 0) {
+
+                }
+            } else {
+                $deadDiv.append($("#" + getCardID(defender)));
+                defender = null;
+            }
+            userHero.aPower += userHero.basePower;
+            // console.log("Defender hp: " + defender.health);
+            // console.log("user attack: " + userHero.aPower);
+        } 
     }
 });
 

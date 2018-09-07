@@ -17,7 +17,7 @@ function heroConstructor(name, health, basePower, dPower, imgSource) {
 var kBlack = heroConstructor("The Black Knight",    100, 15, 2, "assets/images/black-knight.jpg");
 var kGrail = heroConstructor("Knight of the Grail", 120, 12, 10, "assets/images/grail-knight.png");
 var kSolaire = heroConstructor("Knight Solaire",    160, 8, 20, "assets/images/solaire.jpg");
-var kMaximus = heroConstructor("Maximus",           190, 5, 25, "assets/images/gladiator.jpg");
+var kMaximus = heroConstructor("Maximus",           190, 3, 25, "assets/images/gladiator.jpg");
 
 var heros = [kBlack, kGrail, kSolaire, kMaximus];
 
@@ -60,6 +60,14 @@ function placeCards() {
     }
 }
 
+function makeRestartBtn() {
+    var restartBtn = $('<button/>', { text: 'Play again', id: 'restart-btn'});
+    $(restartBtn).on("click", function () {
+        location.reload();
+    });
+    $(".fixed").append(restartBtn);
+}
+
 // card click code
 $(".card").on("click", function () {
     var clickedHero = getHero(this.id);
@@ -88,6 +96,7 @@ $("#attack-button").on("click", function () {
                 if (userHero.health <= 0) {
                     // loss case
                     $statusText.text("You died, but at least you entertained... GAME OVER");
+                    makeRestartBtn();
                 }
             } else {
                 $statusText.text("You have slain " + defender.name + ". Challenge another opponent.")
@@ -97,6 +106,7 @@ $("#attack-button").on("click", function () {
                 if (killCount == 3) {
                     // win case
                     $statusText.text("You are the champion of the Arena!! GAME OVER");
+                    makeRestartBtn();
                 }
             }
             userHero.aPower += userHero.basePower;

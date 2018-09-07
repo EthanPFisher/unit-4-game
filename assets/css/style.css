@@ -2,7 +2,8 @@
 h1,
 h2,
 h3,
-p {
+p,
+#restart-btn {
     font-family: 'Fondamento', cursive;
 }
 
@@ -35,7 +36,7 @@ h2 {
     margin-left: 10px;
 }
 
-h3 {
+h3, #restart-btn {
     color: white;
     font-size: 20px;
 }

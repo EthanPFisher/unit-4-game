@@ -1,4 +1,6 @@
 
+var music = document.getElementById("music")
+
 // constructs hero objects
 function heroConstructor(name, health, basePower, dPower, imgSource) {
     var thisHero = {
@@ -75,6 +77,7 @@ $(".card").on("click", function () {
         userHero = clickedHero;
         $statusText.text("You enter the Arena as " + userHero.name + "!");
         placeCards();
+        music.play()
     } else if (clickedHero !== userHero && clickedHero.health > 0 && defender == null) {
         defender = clickedHero;
         $statusText.text("You challenge " + defender.name + ". He accepts.");
@@ -115,24 +118,3 @@ $("#attack-button").on("click", function () {
         }
     }
 });
-
-// ON CLICK PSUDO
-//store clicked hero in clickedHero
-//if userHero hasnt been set, userHero = clickedHero
-//else if clickedHero != userhero, clickedHero.health > 0, and defender position is empty,
-//  defender = clickedHero, move defender to defender position.
-
-
-
-// GENERAL PSUDO
-//put dudes in first card positions
-//if dude is clicked, store dude obj in userHero variable
-//move other dudes down to enemy card positions
-//move only first enemy clicked to defender card position
-//when attack button is clicked, subtract userHero.aPower from defender.health
-//if defender.health > 0, subtract defender.dPower from userHero.health
-//then add initial userHero.aPower to current userHero.aPower (store initial aPower seperately)
-//continue until one dude dies
-//(loss conditional)
-//move dead guy to dead card pos
-//until you win or die?
